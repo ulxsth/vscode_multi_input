@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-multi-input.hogehoge",
-        "title": "hogehoge"
+        "command": "vscode-multi-input.activate-multi-input-mode",
+        "title": "Activate multi input mode"
       }
     ]
   },
