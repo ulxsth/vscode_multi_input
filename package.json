@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-multi-input.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-multi-input.hogehoge",
+        "title": "hogehoge"
       }
     ]
   },
