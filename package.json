@@ -4,6 +4,11 @@
   "description": "",
   "version": "1.1.1",
   "publisher": "vscodemultiinput",
+  "icon": "assets/images/icon.png",
+  "galleryBanner": {
+    "color": "#81596f",
+    "theme": "dark"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ulxsth/vscode_multi_input"
