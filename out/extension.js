@@ -68,6 +68,7 @@ function activate(context) {
         });
         // workspace にカーソル位置を保存
         context.workspaceState.update('cursorPositions', cursorPositions);
+        vscode.window.showInformationMessage(`カーソル位置を保存しました！`);
     });
     context.subscriptions.push(activateMultiInputMode);
 }
