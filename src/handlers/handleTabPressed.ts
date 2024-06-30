@@ -2,9 +2,8 @@ import * as vscode from "vscode";
 
 import type { CursorPosition } from "../types/CursorPosition";
 
-export const handleTabPressed = (context: vscode.ExtensionContext) => vscode.commands.registerCommand(
-  "vscode-multi-input.on-tab-pressed",
-  () => {
+export const handleTabPressed = (context: vscode.ExtensionContext) =>
+  vscode.commands.registerCommand("vscode-multi-input.on-tab-pressed", () => {
     const editor = vscode.window.activeTextEditor;
     if (!editor) {
       return;
@@ -28,5 +27,4 @@ export const handleTabPressed = (context: vscode.ExtensionContext) => vscode.com
     editor.selection = new vscode.Selection(newPosition, newPosition);
 
     context.workspaceState.update("cursorPositions", cursorPositions);
-  }
-);
+  });
