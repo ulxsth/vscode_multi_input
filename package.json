@@ -4,6 +4,10 @@
   "description": "",
   "version": "0.0.1",
   "publisher": "vscodemultiinput",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ulxsth/vscode_multi_input"
+  },
   "engines": {
     "vscode": "^1.90.0"
   },
