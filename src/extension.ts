@@ -4,14 +4,18 @@ type CursorPosition = [number, number];
 
 export function activate(context: vscode.ExtensionContext) {
 	const onTabPressed = vscode.commands.registerCommand('vscode-multi-input.on-tab-pressed', () => {
-		const editor = vscode.window.activeTextEditor;
-		if (!editor) {
-			vscode.window.showErrorMessage('有効なエディタが選択されていません。');
-			return;
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
 		}
+		
+    if (!context.workspaceState.get("cursorPositions")) {
+      vscode.commands.executeCommand("tab");
+      return;
+    }
 
-		vscode.window.showInformationMessage('Tab キーが押されました。');
-	});
+    vscode.window.showInformationMessage("Tab キーが押されました。");
+  });
 
 
 	const activateMultiInputMode = vscode.commands.registerCommand('vscode-multi-input.activate-multi-input-mode', () => {

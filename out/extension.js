@@ -30,10 +30,13 @@ function activate(context) {
     const onTabPressed = vscode.commands.registerCommand('vscode-multi-input.on-tab-pressed', () => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
-            vscode.window.showErrorMessage('有効なエディタが選択されていません。');
             return;
         }
-        vscode.window.showInformationMessage('Tab キーが押されました。');
+        if (!context.workspaceState.get("cursorPositions")) {
+            vscode.commands.executeCommand("tab");
+            return;
+        }
+        vscode.window.showInformationMessage("Tab キーが押されました。");
     });
     const activateMultiInputMode = vscode.commands.registerCommand('vscode-multi-input.activate-multi-input-mode', () => {
         // workspace にカーソル情報が保存されていれば表示
