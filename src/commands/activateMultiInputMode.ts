@@ -24,6 +24,7 @@ export const activateMultiInputMode = (context: vscode.ExtensionContext) =>
 
       // workspace にカーソル位置を保存
       context.workspaceState.update("cursorPositions", cursorPositions);
+      context.workspaceState.update("index", 0);
       vscode.window.showInformationMessage(`カーソル位置を保存しました！`);
     }
   );
