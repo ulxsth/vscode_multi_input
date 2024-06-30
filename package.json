@@ -2,7 +2,7 @@
   "name": "vscode-multi-input",
   "displayName": "vscode_multi_input",
   "description": "",
-  "version": "0.0.1",
+  "version": "1.1.0",
   "publisher": "vscodemultiinput",
   "repository": {
     "type": "git",
