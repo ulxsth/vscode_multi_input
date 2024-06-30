@@ -26,27 +26,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = activate;
 exports.deactivate = deactivate;
 const vscode = __importStar(require("vscode"));
+const handleTabPressed_1 = require("./handlers/handleTabPressed");
 function activate(context) {
-    const onTabPressed = vscode.commands.registerCommand('vscode-multi-input.on-tab-pressed', () => {
-        const editor = vscode.window.activeTextEditor;
-        if (!editor) {
-            return;
-        }
-        const cursorPositions = context.workspaceState.get("cursorPositions");
-        if (!cursorPositions) {
-            vscode.commands.executeCommand("tab");
-            return;
-        }
-        const cursor = cursorPositions.shift();
-        if (!cursor) {
-            vscode.commands.executeCommand("tab");
-            return;
-        }
-        vscode.window.showInformationMessage(`${cursor[0]} ${cursor[1]}`);
-        const newPosition = new vscode.Position(cursor[0], cursor[1]);
-        editor.selection = new vscode.Selection(newPosition, newPosition);
-        context.workspaceState.update("cursorPositions", cursorPositions);
-    });
     const activateMultiInputMode = vscode.commands.registerCommand('vscode-multi-input.activate-multi-input-mode', () => {
         // workspace にカーソル情報が保存されていれば表示
         const cursors = context.workspaceState.get('cursorPositions');
@@ -74,6 +55,7 @@ function activate(context) {
         context.workspaceState.update('cursorPositions', undefined);
         vscode.window.showInformationMessage('カーソル位置の保存を解除しました！');
     });
+    context.subscriptions.push((0, handleTabPressed_1.handleTabPressed)(context));
     context.subscriptions.push(activateMultiInputMode);
 }
 function deactivate() { }
