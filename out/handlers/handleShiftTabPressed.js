@@ -27,12 +27,25 @@ exports.handleShiftTabPressed = void 0;
 const vscode = __importStar(require("vscode"));
 const handleShiftTabPressed = (context) => {
     return vscode.commands.registerCommand("vscode-multi-input.on-shift-tab-pressed", () => {
-        const cursorPositions = context.workspaceState.get("cursorPositions");
-        if (!cursorPositions) {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) {
             return;
         }
-        const newCursorPositions = cursorPositions.slice(0, cursorPositions.length - 1);
-        context.workspaceState.update("cursorPositions", newCursorPositions);
+        const index = context.workspaceState.get("index");
+        if (index === undefined || index === 0) {
+            vscode.commands.executeCommand("outdent");
+            return;
+        }
+        const cursorPositions = context.workspaceState.get("cursorPositions");
+        if (!cursorPositions) {
+            vscode.commands.executeCommand("tab");
+            return;
+        }
+        const newIndex = index - 1;
+        const cursor = cursorPositions[newIndex];
+        const newPosition = new vscode.Position(cursor[0], cursor[1]);
+        editor.selection = new vscode.Selection(newPosition, newPosition);
+        context.workspaceState.update("index", newIndex);
     });
 };
 exports.handleShiftTabPressed = handleShiftTabPressed;

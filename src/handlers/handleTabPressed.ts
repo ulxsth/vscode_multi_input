@@ -26,12 +26,12 @@ export const handleTabPressed = (context: vscode.ExtensionContext) =>
     const newPosition = new vscode.Position(cursor[0], cursor[1]);
     editor.selection = new vscode.Selection(newPosition, newPosition);
 
-    const nextIndex = index + 1;
-    if (nextIndex >= cursorPositions.length) {
+    const newIndex = index + 1;
+    if (newIndex >= cursorPositions.length) {
       vscode.window.showInformationMessage("終端のカーソルなので、複数入力を終了します！");
       context.workspaceState.update("cursorPositions", undefined);
       context.workspaceState.update("index", undefined);
     } else {
-      context.workspaceState.update("index", nextIndex);
+      context.workspaceState.update("index", newIndex);
     }
   });

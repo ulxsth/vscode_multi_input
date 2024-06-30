@@ -45,6 +45,11 @@
         "command": "vscode-multi-input.on-escape-pressed",
         "key": "escape",
         "when": "editorTextFocus"
+      },
+      {
+        "command": "vscode-multi-input.on-shift-tab-pressed",
+        "key": "shift+tab",
+        "when": "editorTextFocus"
       }
     ]
   },
