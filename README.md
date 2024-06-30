@@ -2,7 +2,7 @@
 マルチカーソル状態から、tab で移動する複数入力状態を可能にする拡張
 
 # Install
-MarketPlace -> Install
+MarketPlace -> Install <br>
 https://marketplace.visualstudio.com/items?itemName=vscodemultiinput.vscode-multi-input
 
 もしくは最新の release から `.vsix` ファイルをインストールし、VSCode に D&D してください
