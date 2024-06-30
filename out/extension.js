@@ -1,40 +1,12 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = activate;
 exports.deactivate = deactivate;
-const vscode = __importStar(require("vscode"));
 const handleTabPressed_1 = require("./handlers/handleTabPressed");
 const activateMultiInputMode_1 = require("./commands/activateMultiInputMode");
+const deactivateMultiInputMode_1 = require("./commands/deactivateMultiInputMode");
 function activate(context) {
-    const deactivateMultiInputMode = vscode.commands.registerCommand('vscode-multi-input.deactivate-multi-input-mode', () => {
-        context.workspaceState.update('cursorPositions', undefined);
-        vscode.window.showInformationMessage('カーソル位置の保存を解除しました！');
-    });
-    context.subscriptions.push((0, handleTabPressed_1.handleTabPressed)(context));
-    context.subscriptions.push((0, activateMultiInputMode_1.activateMultiInputMode)(context));
+    context.subscriptions.push((0, handleTabPressed_1.handleTabPressed)(context), (0, activateMultiInputMode_1.activateMultiInputMode)(context), (0, deactivateMultiInputMode_1.deactivateMultiInputMode)(context));
 }
 function deactivate() { }
 //# sourceMappingURL=extension.js.map
