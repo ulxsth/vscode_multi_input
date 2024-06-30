@@ -32,11 +32,20 @@ function activate(context) {
         if (!editor) {
             return;
         }
-        if (!context.workspaceState.get("cursorPositions")) {
+        const cursorPositions = context.workspaceState.get("cursorPositions");
+        if (!cursorPositions) {
             vscode.commands.executeCommand("tab");
             return;
         }
-        vscode.window.showInformationMessage("Tab キーが押されました。");
+        const cursor = cursorPositions.shift();
+        if (!cursor) {
+            vscode.commands.executeCommand("tab");
+            return;
+        }
+        vscode.window.showInformationMessage(`${cursor[0]} ${cursor[1]}`);
+        const newPosition = new vscode.Position(cursor[0], cursor[1]);
+        editor.selection = new vscode.Selection(newPosition, newPosition);
+        context.workspaceState.update("cursorPositions", cursorPositions);
     });
     const activateMultiInputMode = vscode.commands.registerCommand('vscode-multi-input.activate-multi-input-mode', () => {
         // workspace にカーソル情報が保存されていれば表示

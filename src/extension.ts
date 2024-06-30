@@ -8,13 +8,24 @@ export function activate(context: vscode.ExtensionContext) {
     if (!editor) {
       return;
 		}
-		
-    if (!context.workspaceState.get("cursorPositions")) {
+
+		const cursorPositions: CursorPosition[] | undefined = context.workspaceState.get("cursorPositions");
+    if (!cursorPositions) {
       vscode.commands.executeCommand("tab");
       return;
     }
 
-    vscode.window.showInformationMessage("Tab キーが押されました。");
+		const cursor = cursorPositions.shift();
+		if (!cursor) {
+			vscode.commands.executeCommand("tab");
+			return;
+		}
+
+		vscode.window.showInformationMessage(`${cursor[0]} ${cursor[1]}`);
+		const newPosition = new vscode.Position(cursor[0], cursor[1]);
+		editor.selection = new vscode.Selection(newPosition, newPosition);
+
+		context.workspaceState.update("cursorPositions", cursorPositions);
   });
 
 
