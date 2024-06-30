@@ -27,6 +27,14 @@ exports.activate = activate;
 exports.deactivate = deactivate;
 const vscode = __importStar(require("vscode"));
 function activate(context) {
+    const onTabPressed = vscode.commands.registerCommand('vscode-multi-input.on-tab-pressed', () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            vscode.window.showErrorMessage('有効なエディタが選択されていません。');
+            return;
+        }
+        vscode.window.showInformationMessage('Tab キーが押されました。');
+    });
     const activateMultiInputMode = vscode.commands.registerCommand('vscode-multi-input.activate-multi-input-mode', () => {
         // workspace にカーソル情報が保存されていれば表示
         const cursors = context.workspaceState.get('cursorPositions');

@@ -17,6 +17,17 @@
       {
         "command": "vscode-multi-input.activate-multi-input-mode",
         "title": "Activate multi input mode"
+      },
+      {
+        "command": "vscode-multi-input.on-tab-pressed",
+        "title": "On tab pressed"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "vscode-multi-input.on-tab-pressed",
+        "key": "tab",
+        "when": "editorTextFocus"
       }
     ]
   },
