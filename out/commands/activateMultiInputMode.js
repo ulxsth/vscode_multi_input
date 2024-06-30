@@ -43,6 +43,7 @@ const activateMultiInputMode = (context) => vscode.commands.registerCommand("vsc
     context.workspaceState.update("cursorPositions", cursorPositions);
     context.workspaceState.update("index", 0);
     vscode.window.showInformationMessage(`カーソル位置を保存しました！`);
+    vscode.commands.executeCommand("vscode-multi-input.on-tab-pressed");
 });
 exports.activateMultiInputMode = activateMultiInputMode;
 //# sourceMappingURL=activateMultiInputMode.js.map

@@ -26,5 +26,7 @@ export const activateMultiInputMode = (context: vscode.ExtensionContext) =>
       context.workspaceState.update("cursorPositions", cursorPositions);
       context.workspaceState.update("index", 0);
       vscode.window.showInformationMessage(`カーソル位置を保存しました！`);
+
+      vscode.commands.executeCommand("vscode-multi-input.on-tab-pressed");
     }
   );
