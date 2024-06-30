@@ -29,12 +29,21 @@
       {
         "command": "vscode-multi-input.on-tab-pressed",
         "title": "On tab pressed"
+      },
+      {
+        "command": "vscode-multi-input.on-escape-pressed",
+        "title": "On escape pressed"
       }
     ],
     "keybindings": [
       {
         "command": "vscode-multi-input.on-tab-pressed",
         "key": "tab",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "vscode-multi-input.on-escape-pressed",
+        "key": "escape",
         "when": "editorTextFocus"
       }
     ]
