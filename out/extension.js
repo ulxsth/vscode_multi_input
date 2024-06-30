@@ -70,6 +70,10 @@ function activate(context) {
         context.workspaceState.update('cursorPositions', cursorPositions);
         vscode.window.showInformationMessage(`カーソル位置を保存しました！`);
     });
+    const deactivateMultiInputMode = vscode.commands.registerCommand('vscode-multi-input.deactivate-multi-input-mode', () => {
+        context.workspaceState.update('cursorPositions', undefined);
+        vscode.window.showInformationMessage('カーソル位置の保存を解除しました！');
+    });
     context.subscriptions.push(activateMultiInputMode);
 }
 function deactivate() { }

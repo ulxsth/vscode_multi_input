@@ -28,7 +28,6 @@ export function activate(context: vscode.ExtensionContext) {
 		context.workspaceState.update("cursorPositions", cursorPositions);
   });
 
-
 	const activateMultiInputMode = vscode.commands.registerCommand('vscode-multi-input.activate-multi-input-mode', () => {
 
 		// workspace にカーソル情報が保存されていれば表示
@@ -56,6 +55,11 @@ export function activate(context: vscode.ExtensionContext) {
 		// workspace にカーソル位置を保存
 		context.workspaceState.update('cursorPositions', cursorPositions);
 		vscode.window.showInformationMessage(`カーソル位置を保存しました！`);
+	});
+
+	const deactivateMultiInputMode = vscode.commands.registerCommand('vscode-multi-input.deactivate-multi-input-mode', () => {
+		context.workspaceState.update('cursorPositions', undefined);
+		vscode.window.showInformationMessage('カーソル位置の保存を解除しました！');
 	});
 
 	context.subscriptions.push(activateMultiInputMode);

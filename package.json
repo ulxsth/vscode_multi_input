@@ -23,6 +23,10 @@
         "title": "Activate multi input mode"
       },
       {
+        "command": "vscode-multi-input.deactivate-multi-input-mode",
+        "title": "Deactivate multi input mode"
+      },
+      {
         "command": "vscode-multi-input.on-tab-pressed",
         "title": "On tab pressed"
       }
