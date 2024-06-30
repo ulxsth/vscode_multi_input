@@ -48,8 +48,8 @@ function activate(context) {
         });
         // workspace にカーソル位置を保存
         context.workspaceState.update('cursorPositions', cursorPositions);
-        context.subscriptions.push(activateMultiInputMode);
     });
+    context.subscriptions.push(activateMultiInputMode);
 }
 function deactivate() { }
 //# sourceMappingURL=extension.js.map

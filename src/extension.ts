@@ -29,9 +29,9 @@ export function activate(context: vscode.ExtensionContext) {
 
 		// workspace にカーソル位置を保存
 		context.workspaceState.update('cursorPositions', cursorPositions);
-		context.subscriptions.push(activateMultiInputMode);
 	});
 
+	context.subscriptions.push(activateMultiInputMode);
 }
 
 export function deactivate() {}
