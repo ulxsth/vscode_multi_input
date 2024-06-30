@@ -26,11 +26,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.activateMultiInputMode = void 0;
 const vscode = __importStar(require("vscode"));
 const activateMultiInputMode = (context) => vscode.commands.registerCommand("vscode-multi-input.activate-multi-input-mode", () => {
-    // workspace にカーソル情報が保存されていれば表示
-    const cursors = context.workspaceState.get("cursorPositions");
-    if (cursors) {
-        vscode.window.showInformationMessage(`カーソル位置: ${cursors}`);
-    }
     const editor = vscode.window.activeTextEditor;
     if (!editor) {
         vscode.window.showErrorMessage("有効なエディタが選択されていません。");

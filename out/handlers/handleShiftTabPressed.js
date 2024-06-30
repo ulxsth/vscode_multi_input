@@ -23,26 +23,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleTabPressed = void 0;
+exports.handleShiftTabPressed = void 0;
 const vscode = __importStar(require("vscode"));
-const handleTabPressed = (context) => vscode.commands.registerCommand("vscode-multi-input.on-tab-pressed", () => {
-    const editor = vscode.window.activeTextEditor;
-    if (!editor) {
-        return;
-    }
-    const cursorPositions = context.workspaceState.get("cursorPositions");
-    if (!cursorPositions) {
-        vscode.commands.executeCommand("tab");
-        return;
-    }
-    const cursor = cursorPositions.shift();
-    if (!cursor) {
-        vscode.commands.executeCommand("tab");
-        return;
-    }
-    const newPosition = new vscode.Position(cursor[0], cursor[1]);
-    editor.selection = new vscode.Selection(newPosition, newPosition);
-    context.workspaceState.update("cursorPositions", cursorPositions);
-});
-exports.handleTabPressed = handleTabPressed;
-//# sourceMappingURL=handleTabPressed.js.map
+const handleShiftTabPressed = (context) => {
+    return vscode.commands.registerCommand("vscode-multi-input.on-shift-tab-pressed", () => {
+        const cursorPositions = context.workspaceState.get("cursorPositions");
+        if (!cursorPositions) {
+            return;
+        }
+        const newCursorPositions = cursorPositions.slice(0, cursorPositions.length - 1);
+        context.workspaceState.update("cursorPositions", newCursorPositions);
+    });
+};
+exports.handleShiftTabPressed = handleShiftTabPressed;
+//# sourceMappingURL=handleShiftTabPressed.js.map

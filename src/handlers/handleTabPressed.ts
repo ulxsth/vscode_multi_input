@@ -22,7 +22,6 @@ export const handleTabPressed = (context: vscode.ExtensionContext) =>
       return;
     }
 
-    vscode.window.showInformationMessage(`${cursor[0]} ${cursor[1]}`);
     const newPosition = new vscode.Position(cursor[0], cursor[1]);
     editor.selection = new vscode.Selection(newPosition, newPosition);
 
